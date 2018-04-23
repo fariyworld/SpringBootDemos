@@ -22,8 +22,6 @@ public class StudentController {
     @RequestMapping(value = "/findByName2MongoDB/{name}")
     public Student findByName2MongoDB(@PathVariable String name){
 
-        System.out.println("前台传过来的参数:"+name);
-
         return studentDao.findByName(name);
     }
 

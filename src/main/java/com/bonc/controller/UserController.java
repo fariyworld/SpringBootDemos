@@ -18,7 +18,7 @@ public class UserController {
     @Autowired
     private RedisTemplate<String,Object> redisTemplate;
 
-    @RequestMapping("/getValue2Redis/{key}")
+    @RequestMapping(value = "/getValue2Redis/{key}")
     public User getValue2Redis(@PathVariable String key){
 
         return (User)redisTemplate.opsForValue().get(key);
