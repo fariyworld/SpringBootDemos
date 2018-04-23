@@ -65,4 +65,4 @@ spring:
     password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-
+    initialize: true
