@@ -82,6 +82,14 @@ spring:
       pool-prepared-statements: false
       #建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
       test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      validation-query: select 'x'
+      filters: stat,wall,slf4j
+      filter:
+        stat:
+          merge-sql: true
+          slow-sql-millis: 5000
 mybatis:
   configuration:
     #记录到日志
