@@ -63,6 +63,7 @@ spring:
     #mysql+druid数据库连接池
     druid:
       #name: 如果存在多数据源，监控的时候区分 如果不设置 默认DataSource-" + System.identityHashCode(this)
+      name: DataSource-SpringBootDemo
       #mysql数据源配置
       url: jdbc:mysql://192.168.88.128:3306/solrdb?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false
       username: root
@@ -79,21 +80,25 @@ spring:
       #获取连接时最大等待时间，单位毫秒。配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置useUnfairLock属性为true使用非公平锁。
       max-wait: 60000
       #是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
-      pool-prepared-statements: false
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
       #建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
-      validation-query: select 'x'
-      filters: stat,wall,slf4j
+      #mysql检查数据库连接 oracle select 1 from dual
+      validation-query: select 1
+      #stat 监控 wall sql注入
+      filters: stat,wall
       filter:
         stat:
           merge-sql: true
           slow-sql-millis: 5000
+#mybatis配置
 mybatis:
   configuration:
     #记录到日志
-#    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    #log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
     #控制台输出sql
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   #mybatis 别名
