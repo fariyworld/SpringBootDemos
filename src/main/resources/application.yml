@@ -85,9 +85,9 @@ spring:
 mybatis:
   configuration:
     #记录到日志
-    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+#    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
     #控制台输出sql
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   #mybatis 别名
   type-aliases-package: com.bonc.entity
   #mapper xml 扫描
