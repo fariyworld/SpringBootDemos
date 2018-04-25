@@ -17,6 +17,11 @@ public interface UsersMapper {
     @Select("SELECT * FROM solrtest WHERE id = #{id}")
     Users getUserById(@Param("id") Integer id);
 
+    /**
+     *
+     * @param user
+     * @return int --> 受影响的行数
+     */
     @Insert("INSERT INTO solrtest (name) VALUES(#{name})")
     int insertUsers(Users user);
 }
