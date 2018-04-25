@@ -8,4 +8,6 @@ import com.bonc.entity.Users;
 public interface UsersService {
 
     Users getUsersById(Integer id);
+
+    String insertUsers(Users user);
 }

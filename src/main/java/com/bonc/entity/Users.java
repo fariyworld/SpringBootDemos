@@ -2,10 +2,11 @@ package com.bonc.entity;
 
 import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
-//import org.springframework.data.solr.core.mapping.SolrDocument;
 
 import java.io.Serializable;
 import java.util.Date;
+
+//import org.springframework.data.solr.core.mapping.SolrDocument;
 
 /**
  * @Description: Created by mace on 14:07 2018/4/12.
@@ -26,27 +27,24 @@ public class Users implements Serializable {
     @Field
     private Date create_time;
 
-    @Field
-    private long _version_;
-
     public Users() {
+        super();
     }
 
-    public Users(Integer id, String name, Date create_time, long _version_) {
+    public Users(Integer id, String name, Date create_time) {
         this.id = id;
         this.name = name;
         this.create_time = create_time;
-        this._version_ = _version_;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", create_time='" + create_time + '\'' +
-                ", _version_=" + _version_ +
-                '}';
+        final StringBuilder sb = new StringBuilder("Users{");
+        sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", create_time=").append(create_time);
+        sb.append('}');
+        return sb.toString();
     }
 
     public Integer getId() {
@@ -71,13 +69,5 @@ public class Users implements Serializable {
 
     public void setCreate_time(Date create_time) {
         this.create_time = create_time;
-    }
-
-    public long get_version_() {
-        return _version_;
-    }
-
-    public void set_version_(long _version_) {
-        this._version_ = _version_;
     }
 }

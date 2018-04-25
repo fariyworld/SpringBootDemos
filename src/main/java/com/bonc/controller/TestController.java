@@ -73,4 +73,12 @@ public class TestController {
         return usersService.getUsersById(id);
     }
 
+
+    @RequestMapping(value = "/insertUsers2Mysql", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public String insertUsers2Mysql(Users user){
+
+        return usersService.insertUsers(user);
+    }
+
 }

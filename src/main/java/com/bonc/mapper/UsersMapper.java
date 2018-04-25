@@ -1,6 +1,7 @@
 package com.bonc.mapper;
 
 import com.bonc.entity.Users;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -15,4 +16,7 @@ public interface UsersMapper {
 
     @Select("SELECT * FROM solrtest WHERE id = #{id}")
     Users getUserById(@Param("id") Integer id);
+
+    @Insert("INSERT INTO solrtest (name) VALUES(#{name})")
+    int insertUsers(Users user);
 }
