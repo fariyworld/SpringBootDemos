@@ -39,6 +39,7 @@ public class WebLogAspect {
         HttpServletRequest request = requestAttributes.getRequest();
         logger.info("=========================请求 start======================================");
 //        logger.info("URL : "+ request.getRequestURL());
+        logger.info("IP : " + getClientIp(request));
         logger.info("URL : "+ URLDecoder.decode(request.getRequestURL().toString(), "UTF-8"));
         logger.info("HTTP_METHOD : " + request.getMethod());
         logger.info("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName()
@@ -69,5 +70,22 @@ public class WebLogAspect {
         logger.info("=========================请求 end======================================");
 //      logger.info("\t");
         System.out.println("\t");
+    }
+
+    public  String getClientIp(HttpServletRequest request){
+
+        String remoteAddr = "";
+
+        if(request!=null){
+
+            remoteAddr = request.getHeader("X-FORWARDED-FOR");
+
+            if(remoteAddr==null || "".equals(remoteAddr)){
+
+                remoteAddr = request.getRemoteAddr();
+            }
+        }
+
+        return remoteAddr;
     }
 }
