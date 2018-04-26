@@ -7,7 +7,7 @@
     <groupId>cn.com.bonc</groupId>
     <artifactId>SpringBootMongoDB</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <description>SpringBoot集成MongoDB</description>
 
     <!-- 添加继承Spring Boot依赖 父类及版本 -->
@@ -117,6 +117,8 @@
                 <configuration>
                     <!--fork :  如果没有该项配置，肯定devtools不会起作用，即应用不会restart -->
                     <fork>true</fork>
+                    <!-- 主入口 -->
+                    <mainClass>com.bonc.Application</mainClass>
                 </configuration>
             </plugin>
         </plugins>
@@ -127,6 +129,13 @@
                 <directory>src/main/java</directory>
                 <includes>
                     <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <!-- 打包编译项目时 resources目录下的所有文件也编译到 target目录 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**.*</include>
                 </includes>
             </resource>
         </resources>
