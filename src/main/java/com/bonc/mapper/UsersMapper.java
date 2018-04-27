@@ -2,11 +2,8 @@ package com.bonc.mapper;
 
 import com.bonc.entity.Users;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 /**
  * @Description: Created by mace on 21:10 2018/4/23.
@@ -24,4 +21,5 @@ public interface UsersMapper {
      */
     @Insert("INSERT INTO solrtest (name) VALUES(#{name})")
     int insertUsers(Users user);
+
 }

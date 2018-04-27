@@ -1,5 +1,6 @@
 package com.bonc.controller;
 
+import com.bonc.common.ResponseMessage;
 import com.bonc.dao.StudentDao;
 import com.bonc.entity.Users;
 import com.bonc.service.UsersService;
@@ -66,11 +67,14 @@ public class TestController {
         return solrTemplate.getById("collection1", id, Users.class);
     }
 
+
     @RequestMapping(value = "/getUsersById2Mysql/{id}", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public Users getUsersById2Mysql(@PathVariable Integer id){
+    public ResponseMessage<Users> getUsersById2Mysql(@PathVariable Integer id){
 
-        return usersService.getUsersById(id);
+//        return usersService.getUsersById(id);
+
+        return ResponseMessage.createBySuccess(usersService.getUsersById(id));
     }
 
 

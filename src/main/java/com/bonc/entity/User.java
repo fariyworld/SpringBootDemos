@@ -1,5 +1,9 @@
 package com.bonc.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +11,9 @@ import java.io.Serializable;
  *
  * Created by mace on 15:34 2018/4/10.
  */
+@Setter
+@Getter
+@ToString
 public class User implements Serializable {
 
     //private static final long serialVersionUID = -1L;
@@ -25,19 +32,4 @@ public class User implements Serializable {
         super();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 }
