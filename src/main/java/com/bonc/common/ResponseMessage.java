@@ -78,7 +78,10 @@ public class ResponseMessage<T> implements Serializable {
      * @return: com.bonc.common.ResponseMessage<T>
      */
     public static <T> ResponseMessage<T> createBySuccessMessage(String msg){
-        return new ResponseMessage<T>(ResponseCode.SUCCESS.getCode(),msg);
+        return new ResponseMessage<T>(
+                ResponseCode.SUCCESS.getCode(),
+                msg
+        );
     }
 
     /**
@@ -105,7 +108,11 @@ public class ResponseMessage<T> implements Serializable {
      * @return: com.bonc.common.ResponseMessage<T>
      */
     public static <T> ResponseMessage<T> createBySuccess(String msg,T data){
-        return new ResponseMessage<T>(ResponseCode.SUCCESS.getCode(),msg,data);
+        return new ResponseMessage<T>(
+                ResponseCode.SUCCESS.getCode(),
+                msg,
+                data
+        );
     }
 
     /**
@@ -116,7 +123,10 @@ public class ResponseMessage<T> implements Serializable {
      * @return: com.bonc.common.ResponseMessage<T>
      */
     public static <T> ResponseMessage<T> createByError(){
-        return new ResponseMessage<T>(ResponseCode.ERROR.getCode(),ResponseCode.ERROR.getMsg());
+        return new ResponseMessage<T>(
+                ResponseCode.ERROR.getCode(),
+                ResponseCode.ERROR.getMsg()
+        );
     }
 
     /**
@@ -127,7 +137,10 @@ public class ResponseMessage<T> implements Serializable {
      * @return: com.bonc.common.ResponseMessage<T>
      */
     public static <T> ResponseMessage<T> createByErrorMessage(String errorMessage){
-        return new ResponseMessage<T>(ResponseCode.ERROR.getCode(),errorMessage);
+        return new ResponseMessage<T>(
+                ResponseCode.ERROR.getCode(),
+                errorMessage
+        );
     }
 
     /**
@@ -139,7 +152,10 @@ public class ResponseMessage<T> implements Serializable {
      * @return: com.bonc.common.ResponseMessage<T>
      */
     public static <T> ResponseMessage<T> createByErrorCodeMessage(int errorCode,String errorMessage){
-        return new ResponseMessage<T>(errorCode,errorMessage);
+        return new ResponseMessage<T>(
+                errorCode,
+                errorMessage
+        );
     }
 
 }

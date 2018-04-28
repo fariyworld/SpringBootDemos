@@ -70,7 +70,7 @@ spring:
       #name: 如果存在多数据源，监控的时候区分 如果不设置 默认DataSource-" + System.identityHashCode(this)
       name: DataSource-SpringBootDemo
       #mysql数据源配置
-      url: jdbc:mysql://192.168.88.128:3306/solrdb?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+      url: jdbc:mysql://192.168.88.128:3306/mmall?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false
       username: root
       password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
       driver-class-name: com.mysql.jdbc.Driver
@@ -105,9 +105,19 @@ mybatis:
   configuration:
     #记录到日志
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+    map-underscore-to-camel-case: true
     #控制台输出sql
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   #mybatis 别名
   type-aliases-package: com.bonc.entity
   #mapper xml 扫描
-  mapper-locations: mapper/*Mapper.xml
+  mapper-locations: mapper*/*Mapper.xml
+
+#pagehepler
+pagehelper:
+  helper-dialect: mysql
+  reasonable: "true"
+  support-methods-arguments: "true"
+  params: count=countSql
+
+

@@ -19,7 +19,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
  */
 @SpringBootApplication
 //扫描mybatis--->mapper
-@MapperScan("com.bonc.mapper")
+@MapperScan(basePackages = {"com.bonc.gdao_common_mapper","com.bonc.mapper"})
 public class Application {
 
     public static void main(String[] args) {
@@ -46,7 +46,9 @@ public class Application {
         fastConverter.setFeatures(
                     SerializerFeature.PrettyFormat,
                     //统一转换时间戳: yyyy-MM-dd HH:mm:ss
-                    SerializerFeature.WriteDateUseDateFormat
+                    SerializerFeature.WriteDateUseDateFormat,
+                    //输出为null的
+                    SerializerFeature.WriteMapNullValue
                 );
 
         HttpMessageConverter<?> converter = fastConverter;

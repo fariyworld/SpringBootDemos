@@ -3,6 +3,8 @@ package com.bonc.controller;
 import com.bonc.common.ResponseMessage;
 import com.bonc.dao.StudentDao;
 import com.bonc.entity.Users;
+import com.bonc.gdao_common_mapper.UserMapper;
+import com.bonc.gdomain_common_mapper.User;
 import com.bonc.service.UsersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +36,9 @@ public class TestController {
 
     @Autowired
     private UsersService usersService;
+
+    @Autowired
+    private UserMapper userMapper;
 
     /**
      *
@@ -85,4 +90,10 @@ public class TestController {
         return usersService.insertUsers(user);
     }
 
+    @RequestMapping(value = "/testMybatis", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<User> testMybatis(){
+
+        return ResponseMessage.createBySuccess(userMapper.selectByPrimaryKey(1));
+    }
 }
