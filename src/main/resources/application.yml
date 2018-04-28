@@ -111,7 +111,7 @@ mybatis:
   #mybatis 别名
   type-aliases-package: com.bonc.entity
   #mapper xml 扫描
-  mapper-locations: mapper*/*Mapper.xml
+  mapper-locations: mapper_tk/*Mapper.xml
 
 #pagehepler
 pagehelper:

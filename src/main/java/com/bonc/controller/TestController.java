@@ -3,8 +3,7 @@ package com.bonc.controller;
 import com.bonc.common.ResponseMessage;
 import com.bonc.dao.StudentDao;
 import com.bonc.entity.Users;
-import com.bonc.gdao_common_mapper.UserMapper;
-import com.bonc.gdomain_common_mapper.User;
+import com.bonc.mapper_m.UserMapper;
 import com.bonc.service.UsersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +15,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 
 /**
@@ -38,7 +39,7 @@ public class TestController {
     private UsersService usersService;
 
     @Autowired
-    private UserMapper userMapper;
+    private UserMapper userMapper_tk;
 
     /**
      *
@@ -90,10 +91,10 @@ public class TestController {
         return usersService.insertUsers(user);
     }
 
-    @RequestMapping(value = "/testMybatis", produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/testMybatis_tk", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public ResponseMessage<User> testMybatis(){
+    public ResponseMessage<List<com.bonc.domain.User>> testMybatis_tk(){
 
-        return ResponseMessage.createBySuccess(userMapper.selectByPrimaryKey(1));
+        return ResponseMessage.createBySuccess(userMapper_tk.selectAll());
     }
 }
