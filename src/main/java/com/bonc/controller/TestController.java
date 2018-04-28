@@ -4,9 +4,8 @@ import com.bonc.common.ResponseMessage;
 import com.bonc.dao.StudentDao;
 import com.bonc.domain.User;
 import com.bonc.entity.Users;
-import com.bonc.mapper_m.UserMapper;
+import com.bonc.service.UserService;
 import com.bonc.service.UsersService;
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +41,7 @@ public class TestController {
     private UsersService usersService;
 
     @Autowired
-    private UserMapper userMapper_tk;
+    private UserService userService;
 
     /**
      *
@@ -94,21 +93,19 @@ public class TestController {
         return usersService.insertUsers(user);
     }
 
-    @RequestMapping(value = "/testMybatis_tk", produces = "application/json;charset=UTF-8")
+    /*@RequestMapping(value = "/testMybatis_tk", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public ResponseMessage<List<com.bonc.domain.User>> testMybatis_tk(){
 
         return ResponseMessage.createBySuccess(userMapper_tk.selectAll());
-    }
+    }*/
 
 
     @RequestMapping(value = "/testMybatis_tk_pagehelper", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public ResponseMessage<PageInfo<User>> testMybatis_tk_pagehelper(){
 
-        PageHelper.startPage(1,2);
-
-        return ResponseMessage.createBySuccess(userMapper_tk.findByPage());
+        return ResponseMessage.createBySuccess(userService.findByPage(1,2));
     }
 
 }
