@@ -2,9 +2,12 @@ package com.bonc.controller;
 
 import com.bonc.common.ResponseMessage;
 import com.bonc.dao.StudentDao;
+import com.bonc.domain.User;
 import com.bonc.entity.Users;
 import com.bonc.mapper_m.UserMapper;
 import com.bonc.service.UsersService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,4 +100,15 @@ public class TestController {
 
         return ResponseMessage.createBySuccess(userMapper_tk.selectAll());
     }
+
+
+    @RequestMapping(value = "/testMybatis_tk_pagehelper", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<PageInfo<User>> testMybatis_tk_pagehelper(){
+
+        PageHelper.startPage(1,2);
+
+        return ResponseMessage.createBySuccess(userMapper_tk.findByPage());
+    }
+
 }

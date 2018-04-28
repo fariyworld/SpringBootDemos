@@ -76,6 +76,8 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
       db-type: mysql
       #druid连接池配置
+      async-init: true
+      async-close-connection-enable: true
       #初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
       initial-size: 1
       #最小连接池数量
@@ -119,5 +121,8 @@ pagehelper:
   reasonable: "true"
   support-methods-arguments: "true"
   params: count=countSql
-
+mapper:
+  i-d-e-n-t-i-t-y: MYSQL
+  not-empty: false
+  mappers: com.bonc.common.BaseMapper
 

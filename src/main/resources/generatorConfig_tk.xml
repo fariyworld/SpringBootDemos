@@ -8,7 +8,7 @@
     <!-- 引入配置文件 -->
     <properties resource="mybatisGeneratorinit.properties"/>
     <!-- 必须 指定生成一组对象的环境 -->
-    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
         <!--分隔符 -->
         <property name="autoDelimitKeywords" value="true"/>
         <property name="beginningDelimiter" value="`"/>
@@ -61,11 +61,14 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-        <table tableName="%">
+        <table tableName="%" enableSelectByExample="false" enableDeleteByExample="false"
+                             enableCountByExample="false" enableUpdateByExample="false"
+                             selectByExampleQueryId="false">
             <!-- 不使用驼峰法命名 -->
             <property name="useActualColumnNames" value="true" />
             <!--mysql 配置-->
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+            <!-- 自定义实体类名 -->
             <domainObjectRenamingRule searchString="^Mmall" replaceString=""/>
             <!-- 重写类型 -->
             <columnOverride column="detail" jdbcType="VARCHAR" />
