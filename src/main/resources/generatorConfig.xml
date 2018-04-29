@@ -46,7 +46,7 @@
         </javaTypeResolver>
 
         <!-- 生成实体类地址 -->
-        <javaModelGenerator targetPackage="com.bonc.gdomain_common_mapper" targetProject="${project}" >
+        <javaModelGenerator targetPackage="com.bonc.domain" targetProject="${project}" >
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false"/>
             <!-- 是否对model添加 构造函数 -->
@@ -58,7 +58,7 @@
         </javaModelGenerator>
 
         <!-- 生成mapper xml文件 -->
-        <sqlMapGenerator targetPackage="mapper_common_mapper" targetProject="${resources}" >
+        <sqlMapGenerator targetPackage="mapper_" targetProject="${resources}" >
             <property name="enableSubPackages" value="false" />
         </sqlMapGenerator>
 
@@ -66,7 +66,7 @@
         <!--<javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.bonc.gdao_common_mapperer" targetProject="${project}">
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>-->
-        <javaClientGenerator targetPackage="com.bonc.gdao_common_mapper" targetProject="${project}" type="XMLMAPPER" >
+        <javaClientGenerator targetPackage="com.bonc.mapper_" targetProject="${project}" type="XMLMAPPER" >
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!--<javaClientGenerator targetPackage="com.bonc.gdao_mapper" targetProject="${project}" type="MIXEDMAPPER:XML" >

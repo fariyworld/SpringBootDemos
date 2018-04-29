@@ -19,6 +19,7 @@ import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.MergeConstants;
 import org.mybatis.generator.config.PropertyRegistry;
+import tk.mybatis.mapper.generator.MapperCommentGenerator;
 
 /**
  * description:

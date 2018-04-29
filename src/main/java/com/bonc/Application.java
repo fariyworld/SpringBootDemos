@@ -23,7 +23,7 @@ import javax.sql.DataSource;
  */
 @SpringBootApplication
 //扫描mybatis--->mapper
-//@MapperScan(basePackages = {"com.bonc.gdao_common_mapper","com.bonc.mapper"})
+//@MapperScan(basePackages = {"com.bonc.mapper_","com.bonc.mapper"})
 @MapperScan(basePackages = {"com.bonc.mapper_m"})
 //@org.mybatis.spring.annotation.MapperScan("com.bonc.mapper")
 //开启事务管理

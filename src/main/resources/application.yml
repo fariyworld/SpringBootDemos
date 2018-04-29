@@ -15,7 +15,19 @@ server:
 #但是你自己应用的日志并不会输出为DEBUG级别
 #debug: true
 
+banner:
+  charset: UTF-8
+
 spring:
+
+  http:
+      encoding:
+        charset: UTF-8
+        enabled: true
+        force: true
+    messages:
+      encoding: UTF-8
+
   #热部署生效
   devtools:
     restart:
@@ -70,7 +82,7 @@ spring:
       #name: 如果存在多数据源，监控的时候区分 如果不设置 默认DataSource-" + System.identityHashCode(this)
       name: DataSource-SpringBootDemo
       #mysql数据源配置
-      url: jdbc:mysql://192.168.88.128:3306/mmall?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+      url: jdbc:mysql://192.168.88.128:3306/mmall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
       username: root
       password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
       driver-class-name: com.mysql.jdbc.Driver
@@ -102,6 +114,7 @@ spring:
           merge-sql: true
           slow-sql-millis: 5000
 
+
 #mybatis配置
 mybatis:
   configuration:
@@ -113,7 +126,7 @@ mybatis:
   #mybatis 别名
   type-aliases-package: com.bonc.entity
   #mapper xml 扫描
-  mapper-locations: mapper_tk/*Mapper.xml
+  mapper-locations: mapper_/*Mapper.xml
 
 #pagehepler
 pagehelper:
@@ -121,8 +134,5 @@ pagehelper:
   reasonable: "true"
   support-methods-arguments: "true"
   params: count=countSql
-mapper:
-  i-d-e-n-t-i-t-y: MYSQL
-  not-empty: false
-  mappers: com.bonc.common.BaseMapper
+
 
