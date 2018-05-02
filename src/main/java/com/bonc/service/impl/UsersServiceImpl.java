@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * @Description: Created by mace on 21:14 2018/4/23.
  */
-@Service
+@Service("usersService")
 public class UsersServiceImpl implements UsersService {
 
     @Autowired

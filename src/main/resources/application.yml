@@ -76,28 +76,30 @@ spring:
         enabled: true
   #数据源配置
   datasource:
+#    数据库连接池 druid
+    type: com.alibaba.druid.pool.DruidDataSource
     #master-mysql数据源配置
     master:
       url: jdbc:mysql://192.168.88.128:3306/mmall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
       username: root
       password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
       driver-class-name: com.mysql.jdbc.Driver
-      masterMapperLocation: classpath:mapper/*Mapper.xml
+      masterMapperLocations: classpath:mapper/*Mapper.xml
     #cluster-mysql数据源配置
     cluster:
       url: jdbc:mysql://192.168.88.128:3306/solrdb?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
       username: root
       password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
       driver-class-name: com.mysql.jdbc.Driver
-      masterMapperLocation: classpath:mapper_solr/*Mapper.xml
+      clusterMapperLocations: classpath:mapper_solr/*Mapper.xml
     #mysql+druid数据库连接池
     druid:
       #name: 如果存在多数据源，监控的时候区分 如果不设置 默认DataSource-" + System.identityHashCode(this)
-      name: DataSource-SpringBootDemo
-      url: jdbc:mysql://192.168.88.128:3306/mmall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
-      username: root
-      password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
-      driver-class-name: com.mysql.jdbc.Driver
+#      name: DataSource-SpringBootDemo
+#      url: jdbc:mysql://192.168.88.128:3306/*?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+#      username: root
+#      password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
+#      driver-class-name: com.mysql.jdbc.Driver
       db-type: mysql
       #druid连接池配置
       async-init: true

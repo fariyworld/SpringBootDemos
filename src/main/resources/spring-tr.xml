@@ -15,12 +15,17 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <!-- 配置事务增强（究竟如何管理事务） -->
-    <tx:advice id="txAdvice" transaction-manager="txManager">
+    <!-- master 配置事务增强（究竟如何管理事务） -->
+    <tx:advice id="txAdvice" transaction-manager="masterTransactionManager">
         <tx:attributes>
-            <tx:method name="select*" read-only="true" isolation="DEFAULT" propagation="REQUIRED"/>
-            <tx:method name="find*" read-only="true" isolation="DEFAULT" propagation="REQUIRED"/>
-            <tx:method name="query*" read-only="true" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="insert*" read-only="false" isolation="DEFAULT" propagation="REQUIRED"/>
+            <tx:method name="update*" read-only="false" isolation="DEFAULT" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- cluster 配置事务增强（究竟如何管理事务） -->
+    <tx:advice id="txAdvice" transaction-manager="clusterTransactionManager">
+        <tx:attributes>
             <tx:method name="insert*" read-only="false" isolation="DEFAULT" propagation="REQUIRED"/>
             <tx:method name="update*" read-only="false" isolation="DEFAULT" propagation="REQUIRED"/>
         </tx:attributes>

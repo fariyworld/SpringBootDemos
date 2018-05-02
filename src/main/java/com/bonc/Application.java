@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @SpringBootApplication
 //扫描mybatis--->mapper_solr
-@MapperScan(basePackages = {"com.bonc.mapper","com.bonc.mapper_solr"})
+//@MapperScan(basePackages = {"com.bonc.mapper","com.bonc.mapper_solr"})
 //开启事务管理
 //@EnableTransactionManagement
 public class Application {

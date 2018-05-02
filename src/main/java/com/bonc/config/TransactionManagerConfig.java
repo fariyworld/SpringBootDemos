@@ -1,15 +1,17 @@
 package com.bonc.config;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 
 /**
- * description:
+ * description: xml事务配置
  * <br />
  * Created by mace on 15:37 2018/4/28.
  */
@@ -17,13 +19,25 @@ import javax.sql.DataSource;
 @ImportResource("classpath:spring-tr.xml")
 public class TransactionManagerConfig {
 
-    @Bean
-    public PlatformTransactionManager txManager(DataSource dataSource){
+    @Bean("masterTransactionManager")
+    @Primary
+    public PlatformTransactionManager masterTxManager(@Qualifier("masterDataSource") DataSource dataSource){
 
-        DataSourceTransactionManager txManager = new DataSourceTransactionManager();
+        DataSourceTransactionManager masterTxManager = new DataSourceTransactionManager();
 
-        txManager.setDataSource(dataSource);
+        masterTxManager.setDataSource(dataSource);
 
-        return txManager;
+        return masterTxManager;
     }
+
+    @Bean("clusterTransactionManager")
+    public PlatformTransactionManager clusterTxManager(@Qualifier("clusterDataSource") DataSource dataSource){
+
+        DataSourceTransactionManager clusterTxManager = new DataSourceTransactionManager();
+
+        clusterTxManager.setDataSource(dataSource);
+
+        return clusterTxManager;
+    }
+
 }

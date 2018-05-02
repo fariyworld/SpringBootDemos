@@ -129,7 +129,8 @@
 
     <logger name="org.springframework.data" level="DEBUG"></logger>
     <!-- level:TRACE  sql追踪 -->
-    <logger name="com.bonc.mapper_m" level="TRACE"></logger>
+    <logger name="com.bonc.mapper" level="TRACE"></logger>
+    <logger name="com.bonc.mapper_solr" level="TRACE"></logger>
     <!-- mybatis mysql sqlSession 日志 -->
     <logger name="org.mybatis" level="DEBUG"></logger>
     <!-- mongodb connection 日志 -->
