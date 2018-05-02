@@ -1,7 +1,6 @@
 package com.bonc.controller;
 
 import com.bonc.common.ResponseMessage;
-import com.bonc.dao.StudentDao;
 import com.bonc.domain.User;
 import com.bonc.entity.Users;
 import com.bonc.service.UserService;
@@ -17,9 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.sql.DataSource;
-import java.sql.SQLException;
 
 
 /**
@@ -89,11 +85,11 @@ public class TestController {
         return usersService.insertUsers(user);
     }
 
-    @RequestMapping(value = "/testMybatis_tk_insert", produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/testMybatis_insert", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public ResponseMessage<Integer> testMybatis_tk_insert(User user){
+    public ResponseMessage<Integer> testMybatis_insert(User user){
 
-        return ResponseMessage.createBySuccess(userService.insertSelective(user));
+        return ResponseMessage.createBySuccess(userService.insert(user));
     }
 
 

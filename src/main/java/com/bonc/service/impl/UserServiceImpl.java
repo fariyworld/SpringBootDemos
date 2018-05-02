@@ -8,6 +8,8 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * description:
  * <br />
@@ -31,12 +33,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int insert(User user) {
-        return 0;
+        userMapper.insert(user);
+        return user.getId();
     }
 
     @Override
     public int insertSelective(User user) {
-        return 0;
+        return userMapper.insertSelective(user);
     }
 
     @Override
@@ -54,6 +57,8 @@ public class UserServiceImpl implements UserService {
 
         PageHelper.startPage(pageNum, pageSize);
 
-        return userMapper.findByPage();
+        List<User> userList = userMapper.findByPage();
+
+        return new PageInfo<User>(userList);
     }
 }

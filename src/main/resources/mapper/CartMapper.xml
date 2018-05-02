@@ -33,7 +33,7 @@
       `checked`, create_time, update_time
       )
     values (#{user_id,jdbcType=INTEGER}, #{product_id,jdbcType=INTEGER}, #{quantity,jdbcType=INTEGER}, 
-      #{checked,jdbcType=INTEGER}, #{create_time,jdbcType=TIMESTAMP}, #{update_time,jdbcType=TIMESTAMP}
+      #{checked,jdbcType=INTEGER}, now(), now()
       )
   </insert>
   <insert id="insertSelective" parameterType="com.bonc.domain.Cart" >
@@ -75,10 +75,10 @@
         #{checked,jdbcType=INTEGER},
       </if>
       <if test="create_time != null" >
-        #{create_time,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="update_time != null" >
-        #{update_time,jdbcType=TIMESTAMP},
+        now(),
       </if>
     </trim>
   </insert>
@@ -101,7 +101,7 @@
         create_time = #{create_time,jdbcType=TIMESTAMP},
       </if>
       <if test="update_time != null" >
-        update_time = #{update_time,jdbcType=TIMESTAMP},
+        update_time = now(),
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -113,7 +113,7 @@
       quantity = #{quantity,jdbcType=INTEGER},
       `checked` = #{checked,jdbcType=INTEGER},
       create_time = #{create_time,jdbcType=TIMESTAMP},
-      update_time = #{update_time,jdbcType=TIMESTAMP}
+      update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

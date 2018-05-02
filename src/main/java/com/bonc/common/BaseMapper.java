@@ -2,6 +2,8 @@ package com.bonc.common;
 
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 /**
  * description:
  * <br />
@@ -9,5 +11,5 @@ import com.github.pagehelper.PageInfo;
  */
 public interface BaseMapper<T>{
 
-    PageInfo<T> findByPage();
+    List<T> findByPage();
 }

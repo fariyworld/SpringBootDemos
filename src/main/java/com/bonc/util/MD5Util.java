@@ -36,6 +36,14 @@ public class MD5Util {
         return hexDigits[d1] + hexDigits[d2];
     }
 
+    /**
+     * description: MD5加密 编码
+     * <br /><br />       
+     * create by mace on 2018/5/2 17:01.
+     * @param origin
+     * @param charsetname
+     * @return: java.lang.String
+     */
     private static String MD5Encode(String origin, String charsetname) {
         String resultString = null;
         try {
@@ -51,7 +59,7 @@ public class MD5Util {
     }
 
     /**
-     * description: MD5加密
+     * description:UTF8 MD5加密+salt
      * <br /><br />
      * create by mace on 2018/4/29 22:05.
      * @param encodeStr
@@ -61,4 +69,5 @@ public class MD5Util {
         encodeStr += salt;
         return MD5Encode(encodeStr, "utf-8");
     }
+
 }

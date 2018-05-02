@@ -2,7 +2,8 @@ package com.bonc.mapper;
 
 import com.bonc.common.BaseMapper;
 import com.bonc.domain.User;
-import com.github.pagehelper.PageInfo;
+
+import java.util.List;
 
 public interface UserMapper extends BaseMapper<User> {
     /**
@@ -42,5 +43,5 @@ public interface UserMapper extends BaseMapper<User> {
     int updateByPrimaryKey(User record);
 
     @Override
-    PageInfo<User> findByPage();
+    List<User> findByPage();
 }
