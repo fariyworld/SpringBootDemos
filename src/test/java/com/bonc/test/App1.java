@@ -1,5 +1,6 @@
 package com.bonc.test;
 
+import com.bonc.util.MD5Util;
 import com.bonc.util.MongoOpsUtil;
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.Test;
@@ -20,7 +21,6 @@ public class App1 {
     @Autowired
     private StringEncryptor stringEncryptor;
 
-
     @Test
     public void test(){
 
@@ -34,12 +34,15 @@ public class App1 {
     @Test
     public void test2(){
 
-        String jiamiStr = stringEncryptor.encrypt("liuye0425");
+//        String encrypt = EncryptUtil.encode("liuye0425");
 
-        //356IXRJuIUZGToRMUG375+pm5hnmyqM4
-        System.out.println("加密密码:"+jiamiStr);
+//        String encrypt = stringEncryptor.encrypt("liuye0425");
 
-        System.out.println("解密密码:"+stringEncryptor.decrypt(jiamiStr));
-        
+//        System.out.printf("加密后的密码: %s",encrypt);
+
+//        System.out.println("解密后的密码: "+stringEncryptor.decrypt("etiOWmMphEuU1Ln92n3xqH033aUn26yT"));
+        String encode = MD5Util.MD5Encode("liuye0425");
+
+        System.out.println(encode);
     }
 }

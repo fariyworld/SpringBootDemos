@@ -2,6 +2,7 @@ package com.bonc.controller;
 
 import com.bonc.common.ResponseMessage;
 import com.bonc.dao.StudentDao;
+import com.bonc.domain.User;
 import com.bonc.entity.Users;
 import com.bonc.service.UserService;
 import com.bonc.service.UsersService;
@@ -27,9 +28,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TestController {
 
     private static final Logger logger = LoggerFactory.getLogger(TestController.class);
-
-    @Autowired
-    private StudentDao studentDao;
 
     @Autowired
     private SolrTemplate solrTemplate;
@@ -77,8 +75,6 @@ public class TestController {
     @ResponseBody
     public ResponseMessage<Users> getUsersById2Mysql(@PathVariable Integer id){
 
-//        return usersService.getUsersById(id);
-
         return ResponseMessage.createBySuccess(usersService.getUsersById(id));
     }
 
@@ -90,19 +86,19 @@ public class TestController {
         return usersService.insertUsers(user);
     }
 
-//    @RequestMapping(value = "/testMybatis_tk_insert", produces = "application/json;charset=UTF-8")
-//    @ResponseBody
-//    public ResponseMessage<Integer> testMybatis_tk_insert(User user){
-//
-//        return ResponseMessage.createBySuccess(userService.insertSelective(user));
-//    }
-//
-//
-//    @RequestMapping(value = "/testMybatis_tk_pagehelper", produces = "application/json;charset=UTF-8")
-//    @ResponseBody
-//    public ResponseMessage<PageInfo<User>> testMybatis_tk_pagehelper(){
-//
-//        return ResponseMessage.createBySuccess(userService.findByPage(1,2));
-//    }
+    @RequestMapping(value = "/testMybatis_tk_insert", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<Integer> testMybatis_tk_insert(User user){
+
+        return ResponseMessage.createBySuccess(userService.insertSelective(user));
+    }
+
+
+    @RequestMapping(value = "/testMybatis_tk_pagehelper", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<PageInfo<User>> testMybatis_tk_pagehelper(){
+
+        return ResponseMessage.createBySuccess(userService.findByPage(1,2));
+    }
 
 }

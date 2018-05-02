@@ -1,4 +1,4 @@
-package com.bonc.mapper;
+package com.bonc.mapper_solr;
 
 import com.bonc.entity.Users;
 import org.apache.ibatis.annotations.Insert;

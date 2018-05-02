@@ -1,5 +1,6 @@
 package com.bonc.common;
 
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
@@ -24,4 +25,5 @@ public interface BaseService<T,PK extends Serializable> {
 
     int updateByPrimaryKey(T t);
 
+    PageInfo<T> findByPage(int pageNum, int pageSize);
 }

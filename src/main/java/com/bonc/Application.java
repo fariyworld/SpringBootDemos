@@ -3,18 +3,13 @@ package com.bonc;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import tk.mybatis.spring.annotation.MapperScan;
-
-import javax.sql.DataSource;
 
 /**
  * @Description: SpringBoot启动Application
@@ -22,12 +17,10 @@ import javax.sql.DataSource;
  * Created by mace on 9:29 2018/4/9.
  */
 @SpringBootApplication
-//扫描mybatis--->mapper
-//@MapperScan(basePackages = {"com.bonc.mapper_","com.bonc.mapper"})
-@MapperScan(basePackages = {"com.bonc.mapper_m"})
-//@org.mybatis.spring.annotation.MapperScan("com.bonc.mapper")
+//扫描mybatis--->mapper_solr
+@MapperScan(basePackages = {"com.bonc.mapper","com.bonc.mapper_solr"})
 //开启事务管理
-@EnableTransactionManagement
+//@EnableTransactionManagement
 public class Application {
 
     public static void main(String[] args) {

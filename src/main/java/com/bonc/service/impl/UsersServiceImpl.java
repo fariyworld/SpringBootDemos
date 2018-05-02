@@ -1,7 +1,7 @@
 package com.bonc.service.impl;
 
 import com.bonc.entity.Users;
-import com.bonc.mapper.UsersMapper;
+import com.bonc.mapper_solr.UsersMapper;
 import com.bonc.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,13 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UsersServiceImpl implements UsersService {
 
-//    @Autowired
-//    private UsersMapper usersMapper;
+    @Autowired
+    private UsersMapper usersMapper;
 
     @Override
     public Users getUsersById(Integer id) {
-        return null;
-//        return usersMapper.getUserById(id);
+
+        return usersMapper.getUserById(id);
     }
 
     //事务管理
@@ -27,10 +27,9 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public String insertUsers(Users user) {
 
-//        if(usersMapper.insertUsers(user)>0)
-//            return "success";
-//        else
-//            return "failed";
-        return null;
+        if(usersMapper.insertUsers(user)>0)
+            return "success";
+        else
+            return "failed";
     }
 }
