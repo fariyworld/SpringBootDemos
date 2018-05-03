@@ -38,7 +38,7 @@ spring:
   #redis 数据源配置
   redis:
     # Redis服务器地址
-    host: 192.168.88.128
+    host: 192.168.88.129
     # Redis数据库索引（默认为0）
     database: 0
     # Redis服务器连接端口
@@ -60,14 +60,14 @@ spring:
   data:
     #mongodb数据源配置
     mongodb:
-      host: 192.168.88.128
+      host: 192.168.88.129
       port: 27017
       database: testDB
       repositories:
         enabled: true
     #solr数据源配置
     solr:
-      host: http://192.168.88.128:8983/solr
+      host: http://192.168.88.129:8983/solr
       repositories:
         enabled: true
     #redis数据源配置
@@ -80,14 +80,14 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     #master-mysql数据源配置
     master:
-      url: jdbc:mysql://192.168.88.128:3306/mmall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+      url: jdbc:mysql://192.168.88.129:3306/mmall?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
       username: root
       password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
       driver-class-name: com.mysql.jdbc.Driver
       masterMapperLocations: classpath:mapper/*Mapper.xml
     #cluster-mysql数据源配置
     cluster:
-      url: jdbc:mysql://192.168.88.128:3306/solrdb?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+      url: jdbc:mysql://192.168.88.129:3306/solrdb?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
       username: root
       password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
       driver-class-name: com.mysql.jdbc.Driver
@@ -96,7 +96,7 @@ spring:
     druid:
       #name: 如果存在多数据源，监控的时候区分 如果不设置 默认DataSource-" + System.identityHashCode(this)
 #      name: DataSource-SpringBootDemo
-#      url: jdbc:mysql://192.168.88.128:3306/*?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
+#      url: jdbc:mysql://192.168.88.129:3306/*?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false
 #      username: root
 #      password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
 #      driver-class-name: com.mysql.jdbc.Driver
