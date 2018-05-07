@@ -3,7 +3,7 @@ package com.bonc.controller;
 import com.bonc.common.ResponseMessage;
 import com.bonc.domain.User;
 import com.bonc.entity.Users;
-import com.bonc.service.UserService;
+import com.bonc.service.IUserService;
 import com.bonc.service.UsersService;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
@@ -35,7 +35,7 @@ public class TestController {
     private UsersService usersService;
 
     @Autowired
-    private UserService userService;
+    private IUserService iUserService;
 
     /**
      *
@@ -89,7 +89,7 @@ public class TestController {
     @ResponseBody
     public ResponseMessage<Integer> testMybatis_insert(User user){
 
-        return ResponseMessage.createBySuccess(userService.insert(user));
+        return ResponseMessage.createBySuccess(iUserService.insert(user));
     }
 
 
@@ -97,7 +97,7 @@ public class TestController {
     @ResponseBody
     public ResponseMessage<PageInfo<User>> testMybatis_tk_pagehelper(){
 
-        return ResponseMessage.createBySuccess(userService.findByPage(1,2));
+        return ResponseMessage.createBySuccess(iUserService.findByPage(1,2));
     }
 
 }

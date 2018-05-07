@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by mace on 21:09 2018/4/10.
  */
 @RestController
-public class UserController {
+public class UserRedisController {
 
     @Autowired
     private RedisTemplate<String,Object> redisTemplate;

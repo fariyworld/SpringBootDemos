@@ -1,5 +1,8 @@
 package com.bonc.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,16 +19,18 @@ public class User implements Serializable {
 
     /**
      * 用户密码，MD5加密
+     * Json不序列化该字段
      */
+    @JSONField(serialize = false)
     private String password;
 
     /**
-     * 
+     * 邮箱
      */
     private String email;
 
     /**
-     * 
+     * 手机号
      */
     private String phone;
 

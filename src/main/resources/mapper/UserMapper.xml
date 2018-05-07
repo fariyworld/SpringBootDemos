@@ -29,6 +29,19 @@
     <include refid="Base_Column_List" />
     from mmall_user
   </select>
+  <select id="checkUserName" resultType="java.lang.Integer" parameterType="string">
+    select count(1) from mmall_user
+    where username = #{username}
+  </select>
+  <select id="login" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+      <include refid = "Base_Column_List" />
+    FROM
+      mmall_user
+    WHERE
+      username = #{username}
+      AND PASSWORD = #{password}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_user
     where id = #{id,jdbcType=INTEGER}

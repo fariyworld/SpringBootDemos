@@ -1,7 +1,14 @@
 package com.bonc.test;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.bonc.domain.User;
 import com.bonc.util.MD5Util;
+import com.bonc.util.MongoOpsUtil;
+import org.assertj.core.util.Lists;
 import org.junit.Test;
+
+import java.util.List;
 
 /**
  * description: 测试用例
@@ -13,11 +20,26 @@ public class DemoTest {
     @Test
     public void testMD5(){
 
-        for (int i=0; i<5; i++){
+        String s = MD5Util.MD5Encode("liuye0425");
 
-            String s = MD5Util.MD5Encode("liuye0425");
+        System.out.println(s);
+    }
 
-            System.out.println(s);
-        }
+    @Test
+    public void test1(){
+
+        List<String> userList = Lists.newArrayList();
+
+        User user = new User();
+
+        user.setUsername("fariy");
+        user.setPassword("123456");
+        user.setCreate_time(MongoOpsUtil.time2Id().getDate());
+
+        String jsonString = JSON.toJSONString(user);
+
+        System.out.println(jsonString);
+
+        userList.add(jsonString);
     }
 }

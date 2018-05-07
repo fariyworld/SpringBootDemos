@@ -45,9 +45,9 @@ public class Application {
         fastConverter.setFeatures(
                     SerializerFeature.PrettyFormat,
                     //统一转换时间戳: yyyy-MM-dd HH:mm:ss
-                    SerializerFeature.WriteDateUseDateFormat,
+                    SerializerFeature.WriteDateUseDateFormat
                     //输出为null的
-                    SerializerFeature.WriteMapNullValue
+                    //SerializerFeature.WriteMapNullValue
                 );
 
         HttpMessageConverter<?> converter = fastConverter;
