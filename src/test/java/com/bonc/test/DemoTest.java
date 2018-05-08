@@ -1,8 +1,8 @@
 package com.bonc.test;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.bonc.domain.User;
+import com.bonc.util.FileUtil;
 import com.bonc.util.MD5Util;
 import com.bonc.util.MongoOpsUtil;
 import org.assertj.core.util.Lists;
@@ -42,4 +42,5 @@ public class DemoTest {
 
         userList.add(jsonString);
     }
+
 }

@@ -30,8 +30,14 @@
     from mmall_user
   </select>
   <select id="checkUserName" resultType="java.lang.Integer" parameterType="string">
-    select count(1) from mmall_user
+    select count(1)
+    from mmall_user
     where username = #{username}
+  </select>
+  <select id="checkEmail" resultType="java.lang.Integer">
+    select count(1)
+    from mmall_user
+    where email = #{email}
   </select>
   <select id="login" resultMap="BaseResultMap" parameterType="map">
     SELECT
@@ -42,6 +48,7 @@
       username = #{username}
       AND PASSWORD = #{password}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_user
     where id = #{id,jdbcType=INTEGER}

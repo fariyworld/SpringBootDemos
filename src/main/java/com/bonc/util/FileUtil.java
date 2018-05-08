@@ -15,7 +15,9 @@ public class FileUtil {
 
     public static void main(String[] args) {
 
-        rename("C:\\Users\\15257\\Desktop\\imsi");
+        rename("C:\\Users\\15257\\Desktop\\mr_out");
+        deleteEmptyDirectory("C:\\Users\\15257\\Desktop\\mr_out");
+        System.out.println("rename and replace and deleteEmptyDirectory success");
     }
 
     /**
@@ -98,6 +100,37 @@ public class FileUtil {
                 e.printStackTrace();
             }
         }
+    }
 
+    /**
+     * description: 删除空目录
+     * <br /><br />
+     * create by mace on 2018/5/8 9:16.
+     * @param path
+     * @return: void
+     */
+    public static void deleteEmptyDirectory(String path){
+
+        File root = new File(path);
+
+        String[] list = root.list();
+
+        if(list != null && list.length>0){
+
+            for(String elementName : list){
+
+                File elementFile = new File(path, elementName);
+
+                if(elementFile.isDirectory()){
+
+                    deleteEmptyDirectory(path + File.separator + elementName);
+                }
+            }
+
+        }else{
+//            System.out.println(list.length == 0);
+//            System.out.println(path+"是空目录");
+            root.delete();
+        }
     }
 }

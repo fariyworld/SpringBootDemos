@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 
 /**
- * description: mmall user
+ * description: 门户 user
  * <br />
  * Created by mace on 11:21 2018/5/3.
  */
@@ -34,7 +34,7 @@ public class UserController {
      * @param password
      * @return: com.bonc.common.ResponseMessage<com.bonc.domain.User>
      */
-    @RequestMapping(value = "/login.do", method = RequestMethod.POST)
+    @RequestMapping(value = "login.do", method = RequestMethod.POST)
     public ResponseMessage<User> login(HttpSession session, String username, String password){
 
         ResponseMessage<User> response = iUserService.login(username, password);
@@ -83,6 +83,19 @@ public class UserController {
             session.removeAttribute(Constant.CURRENT_USER);
             return ResponseMessage.createBySuccess();
         }
+    }
+
+    /**
+     * description: 用户注册
+     * <br /><br />
+     * create by mace on 2018/5/7 10:32.
+     * @param user
+     * @return: com.bonc.common.ResponseMessage
+     */
+    @RequestMapping(value = "register.do", method = RequestMethod.POST)
+    public ResponseMessage<String> register(User user){
+
+        return iUserService.register(user);
     }
 
 }

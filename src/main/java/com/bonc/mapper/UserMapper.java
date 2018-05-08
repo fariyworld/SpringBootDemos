@@ -55,5 +55,7 @@ public interface UserMapper extends BaseMapper<User> {
      */
     int checkUserName(@Param("username") String username);
 
+    int checkEmail(@Param("email") String email);
+
     User login(@Param("username") String username, @Param("password") String password);
 }

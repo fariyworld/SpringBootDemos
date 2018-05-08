@@ -12,4 +12,5 @@ import com.bonc.domain.User;
 public interface IUserService extends BaseService<User, Integer>  {
 
     ResponseMessage<User> login(String username, String password);
+    ResponseMessage<String> register(User user);
 }

@@ -8,9 +8,12 @@ package com.bonc.enums;
 public enum ResponseCode {
 
     SUCCESS(0,"success"),//成功
+
     NEED_LOGIN(-1,"need_login"),//需要登录
     ILLEGAL_ARGUMENT(-2,"illegal_argument"),//非法参数
-    ERROR(-10,"error");//错误
+    PERMISSION_DENIED(-3,"permission_denied"),//没有权限
+    ERROR(-10,"error"),//错误
+    EXCEPTION(-100,"exception");
 
 //    REPEAT_REGISTER(-2, "该用户已注册"),
 //    USER_NOT_EXIST(-3, "不存在该用户"),

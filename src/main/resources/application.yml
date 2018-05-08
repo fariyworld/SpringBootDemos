@@ -62,12 +62,26 @@ spring:
     mongodb:
       host: 192.168.88.129
       port: 27017
+#      认证数据库
+      authentication-database: admin
+      username: mace
+      password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
+#      用户使用数据库
       database: testDB
       repositories:
         enabled: true
+
     #solr数据源配置
     solr:
       host: http://192.168.88.129:8983/solr
+      username: mace
+      password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
+#      最大连接数
+      maxConnections: 8
+#      每个主机最大连接数
+      maxConnectionsPerHost: 2
+#      遵循重定向
+      followRedirects: false
       repositories:
         enabled: true
     #redis数据源配置

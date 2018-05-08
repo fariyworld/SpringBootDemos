@@ -1,10 +1,8 @@
 package com.bonc.aop;
 
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -12,6 +10,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.Map;
@@ -32,6 +31,7 @@ public class WebLogAspect {
     public void webLog() {
     }
 
+    //前置通知
     @Before(value = "webLog()")
     public void doBefore(JoinPoint joinPoint) throws Throwable{
 
@@ -40,7 +40,7 @@ public class WebLogAspect {
         logger.info("=========================请求 start======================================");
 //        logger.info("URL : "+ request.getRequestURL());
         logger.info("IP : " + getClientIp(request));
-        logger.info("URL : "+ URLDecoder.decode(request.getRequestURL().toString(), "UTF-8"));
+        logger.info("URL : "+ getRequestUrl(request));
         logger.info("HTTP_METHOD : " + request.getMethod());
         logger.info("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName()
                                       + "." + joinPoint.getSignature().getName());
@@ -54,13 +54,21 @@ public class WebLogAspect {
                 logger.info("name: { "+key+" }, value: { "+request.getParameter(key)+" }");
             }
             logger.info("request参数===========================================end");
-        }
-        if(!Arrays.toString(joinPoint.getArgs()).equals("[{}]")){
-            logger.info("请求参数为: "+ Arrays.toString(joinPoint.getArgs()));
+        }else{
+            if(!Arrays.toString(joinPoint.getArgs()).equals("[]")){
+                logger.info("url path 参数: "+ Arrays.toString(joinPoint.getArgs()));
+            }
         }
 
     }
 
+    //异常通知
+    @AfterThrowing(throwing = "ex", pointcut = "webLog()")
+    public void doAfterThrowing(JoinPoint joinPoint, Exception ex){
+        logger.error("异常信息: {}",ex.getMessage());
+    }
+
+    //返回通知
     @AfterReturning(returning = "result",pointcut = "webLog()")
     public void doAfterReturning(Object result) throws Throwable{
 
@@ -72,9 +80,9 @@ public class WebLogAspect {
         System.out.println("\t");
     }
 
-    public  String getClientIp(HttpServletRequest request){
+    public static String getClientIp(HttpServletRequest request){
 
-        String remoteAddr = "";
+        String remoteAddr = StringUtils.EMPTY;;
 
         if(request!=null){
 
@@ -87,5 +95,18 @@ public class WebLogAspect {
         }
 
         return remoteAddr;
+    }
+
+
+    public static String getRequestUrl(HttpServletRequest request){
+
+        String url = StringUtils.EMPTY;
+
+        try {
+            url =  URLDecoder.decode(request.getRequestURL().toString(), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return url;
     }
 }

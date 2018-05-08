@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.solr.core.SolrTemplate;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,10 +60,22 @@ public class TestController {
 
         logger.info("测试 slf4j logback-spring.xml 记录日志");
 
+        int i = 1/0;
+
         return "success";
     }
 
-    @RequestMapping(value = "/findById2Solr/{id}", produces = "application/json;charset=UTF-8")
+    @RequestMapping("/testEx")
+    @ResponseBody
+    public String testEx() throws Exception{
+
+        int i = 1/0;
+
+        return "success";
+    }
+
+
+    @RequestMapping(value = "/findById2Solr/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public Users findById2Solr(@PathVariable String id){
 

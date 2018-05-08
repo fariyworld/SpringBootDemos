@@ -5,6 +5,8 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.data.solr.SolrRepositoriesAutoConfiguration;
+import org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -14,7 +16,8 @@ import org.springframework.http.converter.HttpMessageConverter;
  *
  * Created by mace on 9:29 2018/4/9.
  */
-@SpringBootApplication
+//exclude的作用：springboot不自动装配的class
+@SpringBootApplication(exclude = {SolrAutoConfiguration.class})//不自动装配solrClient
 //扫描mybatis--->mapper_solr
 //@MapperScan(basePackages = {"com.bonc.mapper","com.bonc.mapper_solr"})
 //开启事务管理
