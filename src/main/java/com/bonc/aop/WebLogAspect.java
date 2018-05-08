@@ -65,6 +65,7 @@ public class WebLogAspect {
     //异常通知
     @AfterThrowing(throwing = "ex", pointcut = "webLog()")
     public void doAfterThrowing(JoinPoint joinPoint, Exception ex){
+
         logger.error("异常信息: {}",ex.getMessage());
     }
 
