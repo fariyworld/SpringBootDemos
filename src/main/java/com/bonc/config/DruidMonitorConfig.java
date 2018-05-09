@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * Created by mace on 13:33 2018/4/24.
  */
 @Configuration
-public class DruidConfig {
+public class DruidMonitorConfig {
 
     @Bean
     public ServletRegistrationBean DruidStatViewServlet(){

@@ -48,7 +48,7 @@ public class SolrConfig {
 
         HttpSolrClient solrClient = new HttpSolrClient(host, HttpClientUtil.createClient(params));
 
-        logger.info("solr client success");
+        logger.info("create solrClient success");
 
         return new SolrTemplate(solrClient);
     }

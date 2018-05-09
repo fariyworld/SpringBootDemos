@@ -13,6 +13,8 @@ public class Constant {
     public static final String EMAIL = "email";
     public static final String USERNAME = "username";
 
+    public static final String ENCODING_CHARTSET = "UTF-8";
+
     //角色
     public interface Role{
         int ROLE_CUSTOMER = 0; //普通用户

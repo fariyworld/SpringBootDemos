@@ -172,6 +172,14 @@ public class ResponseMessage<T> implements Serializable {
         );
     }
 
+    /**
+     * description: 请求失败,根据ResponseCode返回, data
+     * <br /><br />
+     * create by mace on 2018/5/9 9:46.
+     * @param responseCode
+     * @param data
+     * @return: com.bonc.common.ResponseMessage<T>
+     */
     public static <T> ResponseMessage<T> createByErrorResponseCode(ResponseCode responseCode, T data){
         return new ResponseMessage<T>(
                 responseCode.getCode(),

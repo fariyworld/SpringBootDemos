@@ -1,5 +1,6 @@
 package com.bonc.aop;
 
+import com.bonc.common.Constant;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -56,7 +57,7 @@ public class WebLogAspect {
             logger.info("request参数===========================================end");
         }else{
             if(!Arrays.toString(joinPoint.getArgs()).equals("[]")){
-                logger.info("url path 参数: "+ Arrays.toString(joinPoint.getArgs()));
+                logger.info("URL_PATH参数: "+ Arrays.toString(joinPoint.getArgs()));
             }
         }
 
@@ -104,7 +105,7 @@ public class WebLogAspect {
         String url = StringUtils.EMPTY;
 
         try {
-            url =  URLDecoder.decode(request.getRequestURL().toString(), "UTF-8");
+            url =  URLDecoder.decode(request.getRequestURL().toString(), Constant.ENCODING_CHARTSET);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
