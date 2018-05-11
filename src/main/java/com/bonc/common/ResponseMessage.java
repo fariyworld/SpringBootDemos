@@ -15,39 +15,39 @@ public class ResponseMessage<T> implements Serializable {
     private static final long serialVersionUID = -6383969738771150638L;
 
     //状态码
-    private int status_code;
+    private int status;
     //消息描述
     private String msg;
     //返回数据
     private T data;
 
-    private ResponseMessage(int status_code){
-        this.status_code = status_code;
+    private ResponseMessage(int status){
+        this.status = status;
     }
-    private ResponseMessage(int status_code,T data){
-        this.status_code = status_code;
+    private ResponseMessage(int status,T data){
+        this.status = status;
         this.data = data;
     }
 
-    private ResponseMessage(int status_code,String msg,T data){
-        this.status_code = status_code;
+    private ResponseMessage(int status,String msg,T data){
+        this.status = status;
         this.msg = msg;
         this.data = data;
     }
 
-    private ResponseMessage(int status_code,String msg){
-        this.status_code = status_code;
+    private ResponseMessage(int status,String msg){
+        this.status = status;
         this.msg = msg;
     }
 
     //使之不在json序列化结果当中
     @JSONField(serialize = false)
     public boolean isSuccess(){
-        return this.status_code == ResponseCode.SUCCESS.getCode();
+        return this.status == ResponseCode.SUCCESS.getCode();
     }
 
     public int getStatus(){
-        return status_code;
+        return status;
     }
     public T getData(){
         return data;

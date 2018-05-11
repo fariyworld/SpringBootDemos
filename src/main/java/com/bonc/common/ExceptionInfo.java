@@ -1,5 +1,7 @@
 package com.bonc.common;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 /**
  * description:
  * <br />
@@ -11,7 +13,9 @@ public class ExceptionInfo<T extends Exception> {
     private String url;
     private String class_method;
     private String ex_message;
+    @JSONField(serialize = false)
     private T exception;//Exception
+    private String stackTrace;
 
     public String getIp() {
         return ip;
@@ -51,5 +55,13 @@ public class ExceptionInfo<T extends Exception> {
 
     public void setException(T exception) {
         this.exception = exception;
+    }
+
+    public String getStackTrace() {
+        return stackTrace;
+    }
+
+    public void setStackTrace(String stackTrace) {
+        this.stackTrace = stackTrace;
     }
 }

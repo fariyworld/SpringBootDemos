@@ -68,6 +68,8 @@ public class WebLogAspect {
     public void doAfterThrowing(JoinPoint joinPoint, Exception ex){
 
         logger.error("异常信息: {}",ex.getMessage());
+        logger.error("异常堆栈: {}",ex.getStackTrace());
+        logger.info("=========================请求 异常 end======================================");
     }
 
     //返回通知

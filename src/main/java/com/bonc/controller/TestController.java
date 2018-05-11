@@ -3,9 +3,11 @@ package com.bonc.controller;
 import com.bonc.common.ResponseMessage;
 import com.bonc.domain.User;
 import com.bonc.entity.Users;
+import com.bonc.enums.ResponseCode;
 import com.bonc.service.IUserService;
 import com.bonc.service.UsersService;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +54,15 @@ public class TestController {
         map.addAttribute("sex", 1);
 
         return "home";
+    }
+
+
+    @RequestMapping(value = "/testThymeleaf", method = RequestMethod.GET)
+    public String testThymeleaf(ModelMap map){
+
+        map.addAttribute("hello", "hello springboot Thymeleaf");
+
+        return "HelloThymeleaf";
     }
 
     @RequestMapping("/testLog")
@@ -113,4 +124,19 @@ public class TestController {
         return ResponseMessage.createBySuccess(iUserService.findByPage(1,2));
     }
 
+
+    @RequestMapping(value = "/testAjax.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage testAjax(String username, String password){
+
+        if(StringUtils.isBlank(password) || StringUtils.isBlank(password)){
+            return ResponseMessage.createByErrorResponseCode(ResponseCode.ILLEGAL_ARGUMENT);
+        }
+
+        if("admin".equals(username) && "admin".equals(password)){
+            return ResponseMessage.createBySuccessMessage("登录成功");
+        }
+
+        return ResponseMessage.createByErrorMessage("登录失败");
+    }
 }

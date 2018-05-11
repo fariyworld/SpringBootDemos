@@ -1,5 +1,6 @@
 package com.bonc.common;
 
+import com.alibaba.fastjson.JSON;
 import com.bonc.aop.WebLogAspect;
 import com.bonc.enums.ResponseCode;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,8 +21,15 @@ import javax.servlet.http.HttpServletRequest;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
-
+    /**
+     * description: 返回 json
+     * <br /><br />
+     * create by mace on 2018/5/11 11:10.
+     * @param ex
+     * @param request
+     * @param handlerMethod
+     * @return: com.bonc.common.ResponseMessage<com.bonc.common.ExceptionInfo<java.lang.Exception>>
+     */
     @ExceptionHandler(Exception.class)
     @ResponseBody
     public ResponseMessage<ExceptionInfo<Exception>> errorHandler(Exception ex, HttpServletRequest request, HandlerMethod handlerMethod){
@@ -28,6 +37,7 @@ public class GlobalExceptionHandler {
         ExceptionInfo<Exception> exceptionInfo = new ExceptionInfo<Exception>();
 
         exceptionInfo.setException(ex);
+        exceptionInfo.setStackTrace(ex.getStackTrace()[0].toString());
         exceptionInfo.setIp(WebLogAspect.getClientIp(request));
         exceptionInfo.setUrl(WebLogAspect.getRequestUrl(request));
         exceptionInfo.setClass_method(handlerMethod.getMethod().toGenericString());
@@ -35,4 +45,33 @@ public class GlobalExceptionHandler {
 
         return ResponseMessage.createByErrorResponseCode(ResponseCode.EXCEPTION,exceptionInfo);
     }
+
+    /**
+     * description: 返回 Thymeleaf 页面
+     * <br /><br />
+     * create by mace on 2018/5/11 11:08.
+     * @param ex
+     * @param request
+     * @param handlerMethod
+     * @return: org.springframework.web.servlet.ModelAndView
+     */
+//    @ExceptionHandler(Exception.class)
+//    public ModelAndView errorHandler(Exception ex, HttpServletRequest request, HandlerMethod handlerMethod){
+//
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("Exception");
+//
+//        ExceptionInfo<Exception> exceptionInfo = new ExceptionInfo<Exception>();
+//
+//        exceptionInfo.setException(ex);
+//        exceptionInfo.setStackTrace(ex.getStackTrace()[0].toString());
+//        exceptionInfo.setIp(WebLogAspect.getClientIp(request));
+//        exceptionInfo.setUrl(WebLogAspect.getRequestUrl(request));
+//        exceptionInfo.setClass_method(handlerMethod.getMethod().toGenericString());
+//        exceptionInfo.setEx_message(ex.getMessage());
+//
+//        modelAndView.addObject("exceptionInfo", exceptionInfo);
+//
+//        return modelAndView;
+//    }
 }
