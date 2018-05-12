@@ -88,7 +88,7 @@ public class UserServiceImpl implements IUserService {
             return ResponseMessage.createByErrorMessage("用户名不存在");
         }
         //2. MD5加密
-        String md5Password = MD5Util.MD5Encode(password);
+        String md5Password = MD5Util.encode(password);
         //3. 登录
         User user = userMapper.login(username, md5Password);
         if( user == null ){
@@ -122,7 +122,7 @@ public class UserServiceImpl implements IUserService {
         //2.设置用户角色为普通用户
         user.setRole(Constant.Role.ROLE_CUSTOMER);
         //3.MD5密码加密
-        user.setPassword(MD5Util.MD5Encode(user.getPassword()));
+        user.setPassword(MD5Util.encode(user.getPassword()));
         //4.执行SQL
         if(userMapper.insert(user) == 0){
             return ResponseMessage.createByErrorMessage("注册失败");

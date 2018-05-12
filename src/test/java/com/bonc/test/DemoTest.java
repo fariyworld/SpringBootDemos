@@ -20,7 +20,7 @@ public class DemoTest {
     @Test
     public void testMD5(){
 
-        String s = MD5Util.MD5Encode("liuye0425");
+        String s = MD5Util.encode("liuye0425");
 
         System.out.println(s);
     }

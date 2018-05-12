@@ -44,7 +44,7 @@ public class App1 {
 //        System.out.printf("加密后的密码: %s",encrypt);
 
 //        System.out.println("解密后的密码: "+stringEncryptor.decrypt("etiOWmMphEuU1Ln92n3xqH033aUn26yT"));
-        String encode = MD5Util.MD5Encode("liuye0425");
+        String encode = MD5Util.encode("liuye0425");
 
         System.out.println(encode);
     }

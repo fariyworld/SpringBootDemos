@@ -1,5 +1,7 @@
 package com.bonc.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -23,11 +25,14 @@ import redis.clients.jedis.JedisPoolConfig;
  */
 
 @Configuration
-@EnableCaching // 启用缓存，这个注解很重要；
+@EnableCaching//启用缓存,这个注解很重要
 public class RedisConfig extends CachingConfigurerSupport {
+
+    private static final Logger logger = LoggerFactory.getLogger(RedisConfig.class);
+
+
     /**
      * 缓存管理器.
-     *
      * @param redisTemplate
      * @return
      */
@@ -41,9 +46,9 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     /**
      * redis模板操作类,类似于jdbcTemplate的一个类;
-     *
+     * <br />
      * 解决redis自动生成key，key乱码，为自定义key
-     *
+     * <br />
      * @param factory 通过Spring进行注入，参数在application.yml进行配置；
      * @return
      */
@@ -56,16 +61,16 @@ public class RedisConfig extends CachingConfigurerSupport {
 
 //        RedisConnectionFactory redisConnectionFactory = factory;
 //        JedisConnectionFactory jedisConnectionFactory = (JedisConnectionFactory) redisConnectionFactory;
-//        System.out.println("hostname: "+jedisConnectionFactory.getHostName());
-//        System.out.println("use pool: "+jedisConnectionFactory.getUsePool());
-//        System.out.println("password: "+jedisConnectionFactory.getPassword());
-//        System.out.println("port: "+jedisConnectionFactory.getPort());
-//        System.out.println("datebase: "+jedisConnectionFactory.getDatabase());
-//        System.out.println("timeout: "+jedisConnectionFactory.getTimeout());
+//        logger.info("hostname: "+jedisConnectionFactory.getHostName());
+//        logger.info("use pool: "+jedisConnectionFactory.getUsePool());
+//        logger.info("password: "+jedisConnectionFactory.getPassword());
+//        logger.info("port: "+jedisConnectionFactory.getPort());
+//        logger.info("datebase: "+jedisConnectionFactory.getDatabase());
+//        logger.info("timeout: "+jedisConnectionFactory.getTimeout());
 //        JedisPoolConfig poolConfig = jedisConnectionFactory.getPoolConfig();
-//        System.out.println("max-idle: "+poolConfig.getMaxIdle());
-//        System.out.println("max-wait: "+poolConfig.getMaxWaitMillis());
-//        System.out.println("min-idle: "+poolConfig.getMinIdle());
+//        logger.info("max-idle: "+poolConfig.getMaxIdle());
+//        logger.info("max-wait: "+poolConfig.getMaxWaitMillis());
+//        logger.info("min-idle: "+poolConfig.getMinIdle());
 
         RedisSerializer<String> redisSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(redisSerializer);

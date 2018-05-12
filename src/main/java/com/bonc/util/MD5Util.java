@@ -44,7 +44,7 @@ public class MD5Util {
      * @param charsetname
      * @return: java.lang.String
      */
-    private static String MD5Encode(String origin, String charsetname) {
+    private static String encode(String origin, String charsetname) {
         String resultString = null;
         try {
             resultString = new String(origin);
@@ -65,9 +65,9 @@ public class MD5Util {
      * @param encodeStr
      * @return: java.lang.String
      */
-    public static String MD5Encode(String encodeStr) {
+    public static String encode(String encodeStr) {
         encodeStr += salt;
-        return MD5Encode(encodeStr, "utf-8");
+        return encode(encodeStr, "utf-8");
     }
 
 }

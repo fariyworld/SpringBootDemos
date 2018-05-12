@@ -52,7 +52,11 @@ public class WebLogAspect {
             Set<Map.Entry<String, String[]>> entrySet = parameterMap.entrySet();
             for(Map.Entry<String, String[]> entry:entrySet){
                 String key = entry.getKey();
-                logger.info("name: { "+key+" }, value: { "+request.getParameter(key)+" }");
+                if(key.equals("passowrd")){
+                    logger.info("name: { "+key+" }, value: {  }");
+                }else{
+                    logger.info("name: { "+key+" }, value: { "+request.getParameter(key)+" }");
+                }
             }
             logger.info("request参数===========================================end");
         }else{
