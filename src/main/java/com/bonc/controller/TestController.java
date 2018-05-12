@@ -6,19 +6,22 @@ import com.bonc.entity.Users;
 import com.bonc.enums.ResponseCode;
 import com.bonc.service.IUserService;
 import com.bonc.service.UsersService;
+import com.bonc.util.FTPUtil;
+import com.bonc.util.MongoOpsUtil;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 
 /**
@@ -39,6 +42,7 @@ public class TestController {
 
     @Autowired
     private IUserService iUserService;
+
 
     /**
      *
@@ -139,4 +143,27 @@ public class TestController {
 
         return ResponseMessage.createByErrorMessage("登录失败");
     }
+
+
+    @RequestMapping(value = "/testUploadFile.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<String> testUploadFile(@RequestParam(value = "photo", required = false) MultipartFile file){
+
+        String fileName = file.getOriginalFilename();
+        String fileExtensionName = fileName.substring(fileName.lastIndexOf("."));
+        String uploadFileName = MongoOpsUtil.ObjectId2Str() + fileExtensionName;
+
+        logger.info("开始上传文件,上传文件的文件名:{},新文件名:{}",fileName,uploadFileName);
+
+        try {
+            boolean flag = FTPUtil.uploadImage(uploadFileName, file.getInputStream());
+            if(!flag)
+                return ResponseMessage.createByErrorMessage("文件上传FTP服务器失败");
+        } catch (IOException e) {
+            logger.error("文件上传失败");
+            return ResponseMessage.createByErrorMessage("文件上传失败");
+        }
+        return ResponseMessage.createBySuccess("文件上传FTP服务器成功",uploadFileName);
+    }
+
 }

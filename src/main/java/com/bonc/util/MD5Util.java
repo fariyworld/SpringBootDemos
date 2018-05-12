@@ -1,5 +1,6 @@
 package com.bonc.util;
 
+import com.bonc.config.MD5Properties;
 import org.jasypt.encryption.StringEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,8 +14,11 @@ import java.security.MessageDigest;
  */
 public class MD5Util {
 
-    @Value("${jasypt.encryptor.password}")
     private static String salt;
+    static {
+        salt = MD5Properties.salt;
+    }
+
 
     private static final String hexDigits[] = {"0", "1", "2", "3", "4", "5",
             "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};

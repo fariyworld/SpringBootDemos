@@ -1,8 +1,6 @@
 package com.bonc.util;
 
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.util.Date;
 
@@ -13,11 +11,6 @@ import java.util.Date;
  */
 public class MongoOpsUtil {
 
-    @Autowired
-    private MongoTemplate mongoTemplate;
-
-
-
     /**
      * @Description: 当前系统时间 --> ObjectId
      * @return: org.bson.types.ObjectId
@@ -26,6 +19,18 @@ public class MongoOpsUtil {
     public static ObjectId time2Id(){
 
         return new ObjectId();
+    }
+
+    /**
+     * description: 当前系统时间 --> ObjectId --> String
+     * <br /><br />
+     * create by mace on 2018/5/12 19:18.
+     * @param
+     * @return: java.lang.String
+     */
+    public static String ObjectId2Str(){
+
+        return new ObjectId().toString();
     }
 
     /**

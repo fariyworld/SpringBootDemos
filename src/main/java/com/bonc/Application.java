@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.data.solr.SolrRepositoriesAutoConf
 import org.springframework.boot.autoconfigure.solr.SolrAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.converter.HttpMessageConverter;
 
 /**

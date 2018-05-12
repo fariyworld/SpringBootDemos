@@ -2,7 +2,6 @@ package com.bonc.test;
 
 import com.alibaba.fastjson.JSON;
 import com.bonc.domain.User;
-import com.bonc.util.FileUtil;
 import com.bonc.util.MD5Util;
 import com.bonc.util.MongoOpsUtil;
 import org.assertj.core.util.Lists;
@@ -46,6 +45,7 @@ public class DemoTest {
     @Test
     public void test2(){
 
+//        System.out.println(MongoOpsUtil.id2time("5af6e967ea472332e0a52018"));
     }
 
 }

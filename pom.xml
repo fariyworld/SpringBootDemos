@@ -32,6 +32,8 @@
         <fastjson-version>1.2.7</fastjson-version>
         <mybatis-pagehelper-version>1.2.3</mybatis-pagehelper-version>
         <common-codec-version>1.6</common-codec-version>
+        <ftp-version>3.1</ftp-version>
+        <google-collections-version>1.0</google-collections-version>
     </properties>
 
     <dependencies>
@@ -139,7 +141,18 @@
             <artifactId>commons-codec</artifactId>
             <version>${common-codec-version}</version>
         </dependency>
-
+        <!-- FTP依赖 -->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>${ftp-version}</version>
+        </dependency>
+        <!-- 好用的集合类库 -->
+        <dependency>
+            <groupId>com.google.collections</groupId>
+            <artifactId>google-collections</artifactId>
+            <version>${google-collections-version}</version>
+        </dependency>
 
     </dependencies>
 
