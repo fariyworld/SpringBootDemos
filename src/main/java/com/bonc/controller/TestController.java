@@ -1,6 +1,8 @@
 package com.bonc.controller;
 
+import com.bonc.common.Constant;
 import com.bonc.common.ResponseMessage;
+import com.bonc.config.FTPProperties;
 import com.bonc.domain.User;
 import com.bonc.entity.Users;
 import com.bonc.enums.ResponseCode;
@@ -9,6 +11,8 @@ import com.bonc.service.UsersService;
 import com.bonc.util.FTPUtil;
 import com.bonc.util.MongoOpsUtil;
 import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +25,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 
 
 /**
@@ -147,7 +153,7 @@ public class TestController {
 
     @RequestMapping(value = "/testUploadFile.do", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public ResponseMessage<String> testUploadFile(@RequestParam(value = "photo", required = false) MultipartFile file){
+    public ResponseMessage<Map<String,String>> testUploadFile(@RequestParam(value = "photo", required = false) MultipartFile file){
 
         String fileName = file.getOriginalFilename();
         String fileExtensionName = fileName.substring(fileName.lastIndexOf("."));
@@ -156,14 +162,28 @@ public class TestController {
         logger.info("开始上传文件,上传文件的文件名:{},新文件名:{}",fileName,uploadFileName);
 
         try {
-            boolean flag = FTPUtil.uploadImage(uploadFileName, file.getInputStream());
-            if(!flag)
-                return ResponseMessage.createByErrorMessage("文件上传FTP服务器失败");
+
+            Map<String, MultipartFile> fileMap =  Maps.newHashMap();
+            fileMap.put(uploadFileName, file);
+
+            boolean flag = FTPUtil.uploadFile(Constant.FTP_OTHER_IMAGES_PATH, fileMap);
+
+            if(flag){
+                fileMap.clear();
+                //上传成功
+                Map<String,String> res = Maps.newHashMap();
+                String url = FTPProperties.prefix + Constant.FTP_OTHER_IMAGES_PATH + uploadFileName;
+                res.put("uri", uploadFileName);
+                res.put("url", url);
+                return ResponseMessage.createBySuccess("文件上传FTP服务器成功",res);
+            }
+
         } catch (IOException e) {
             logger.error("文件上传失败");
             return ResponseMessage.createByErrorMessage("文件上传失败");
         }
-        return ResponseMessage.createBySuccess("文件上传FTP服务器成功",uploadFileName);
+        return ResponseMessage.createByErrorMessage("文件上传FTP服务器失败");
     }
+
 
 }

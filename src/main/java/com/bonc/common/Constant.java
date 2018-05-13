@@ -15,6 +15,8 @@ public class Constant {
 
     public static final String ENCODING_CHARTSET = "UTF-8";
 
+    public static final String FTP_OTHER_IMAGES_PATH = "images/other/";
+
     //角色
     public interface Role{
         int ROLE_CUSTOMER = 0; //普通用户

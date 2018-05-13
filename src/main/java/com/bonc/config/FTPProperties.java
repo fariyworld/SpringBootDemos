@@ -15,6 +15,8 @@ public class FTPProperties {
     public static String host;
     public static String username;
     public static String password;
+    public static String prefix;
+    public static String remotePath;
 
     public String getHost() {
         return host;
@@ -39,4 +41,14 @@ public class FTPProperties {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public static String getPrefix() { return prefix; }
+
+    public static void setPrefix(String prefix) {
+        FTPProperties.prefix = prefix;
+    }
+
+    public static String getRemotePath() { return remotePath; }
+
+    public static void setRemotePath(String remotePath) { FTPProperties.remotePath = remotePath; }
 }

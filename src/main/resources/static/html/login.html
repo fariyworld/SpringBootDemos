@@ -42,7 +42,6 @@
             var data = {"username":username,"password":password};
             var url = "/user/login.do";
             $.post(url,data,function(data){
-                console.log(data);
                 if(data.status === 0){
                     alert("登录成功");
                 }else{
@@ -71,7 +70,14 @@
                 async: true,
                 //服务器成功响应处理函数
                 success:function (data) {
-                    console.log(data.msg);
+                    if(data.status === 0){
+                        //上传成功
+                        // window.location.href = data.data.url;
+                        alert(data.data.url);
+                    }else{
+                        //上传失败
+                        alert(data.msg);
+                    }
                 }
             });
         });

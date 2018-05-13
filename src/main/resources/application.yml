@@ -20,12 +20,13 @@ server:
 #但是你自己应用的日志并不会输出为DEBUG级别
 #debug: true
 
-#FTP服务器设置
+#FTP文件服务器设置
 ftp:
   host: 192.168.88.129
   username: ftpuser
   password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
-  prefix: ftp://192.168.88.129/images/
+  prefix: ftp://192.168.88.129/
+  remotePath: /data/ftpfile/
 
 banner:
   charset: UTF-8
