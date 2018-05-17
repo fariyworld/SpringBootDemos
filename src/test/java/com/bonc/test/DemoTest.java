@@ -2,6 +2,7 @@ package com.bonc.test;
 
 import com.alibaba.fastjson.JSON;
 import com.bonc.domain.User;
+import com.bonc.util.BigDecimalUtil;
 import com.bonc.util.MD5Util;
 import com.bonc.util.MongoOpsUtil;
 import org.assertj.core.util.Lists;
@@ -46,6 +47,10 @@ public class DemoTest {
     public void test2(){
 
 //        System.out.println(MongoOpsUtil.id2time("5af6e967ea472332e0a52018"));
+        System.out.println(BigDecimalUtil.add(0.05, 0.01));
+        System.out.println(BigDecimalUtil.div(10, 3));
+        System.out.println(BigDecimalUtil.mul(4.321, 100));
+        System.out.println(BigDecimalUtil.sub(0.83, 0.31));
     }
 
 }
