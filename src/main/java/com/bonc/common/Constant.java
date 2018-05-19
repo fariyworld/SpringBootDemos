@@ -17,6 +17,14 @@ public class Constant {
 
     public static final String FTP_OTHER_IMAGES_PATH = "images/other/";
 
+    public interface Cookie{
+
+        String OFF_LINE_SHOPPING_CART_ID = "off_line_shopping_cart_id";
+        int HALF_HOUR = 30 * 60;
+        int ONE_WEEK = 7 * 24 * 3600;
+        int ONE_MONTH = 30 * 24 * 3600;
+    }
+
     //角色
     public interface Role{
         int ROLE_CUSTOMER = 0; //普通用户

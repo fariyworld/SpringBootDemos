@@ -1,5 +1,6 @@
 package com.bonc.controller;
 
+import com.bonc.aop.WebLogAspect;
 import com.bonc.common.Constant;
 import com.bonc.common.ResponseMessage;
 import com.bonc.config.FTPProperties;
@@ -8,6 +9,7 @@ import com.bonc.entity.Users;
 import com.bonc.enums.ResponseCode;
 import com.bonc.service.IUserService;
 import com.bonc.service.UsersService;
+import com.bonc.util.CookieUtil;
 import com.bonc.util.FTPUtil;
 import com.bonc.util.MongoOpsUtil;
 import com.github.pagehelper.PageInfo;
@@ -25,6 +27,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -186,4 +191,54 @@ public class TestController {
     }
 
 
+    @RequestMapping(value = "/testSessionId.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<String> testSessionId(HttpSession session, HttpServletResponse response){
+
+        String sessionId = session.getId();
+        //D38353071D007BFB0FB6CA0282BAA2A3
+        CookieUtil.set(response,
+                      Constant.Cookie.OFF_LINE_SHOPPING_CART_ID,
+                      MongoOpsUtil.ObjectId2Str()+"_离线购物车ID",
+                       Constant.Cookie.ONE_MONTH);
+
+        return ResponseMessage.createBySuccess();
+    }
+
+    @RequestMapping(value = "/getCookieByName.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<String> getCookieByName(HttpServletRequest request){
+
+        String value = CookieUtil.getValueByName(request, Constant.Cookie.OFF_LINE_SHOPPING_CART_ID);
+
+        logger.info(value);
+
+        return ResponseMessage.createBySuccess(value);
+    }
+
+    @RequestMapping(value = "/setSessionId.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<String> setSessionId(HttpServletRequest request){
+
+        HttpSession session = request.getSession();
+        String sessionId = session.getId();
+        session.setAttribute("sessionId", sessionId);
+        String requestUrl = WebLogAspect.getRequestUrl(request);
+        session.setAttribute("message", "请求地址:"+requestUrl);
+
+        return ResponseMessage.createBySuccessMessage("第一次访问8088");
+    }
+
+    @RequestMapping(value = "/testRedisSession.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<Map<String,String>> getSessionId(HttpServletRequest request){
+
+        Map<String,String> map = Maps.newHashMap();
+        String sessionId = (String) request.getSession().getAttribute("sessionId");
+        String message = (String) request.getSession().getAttribute("message");
+        map.put("sessionId", sessionId);
+        map.put("message", message);
+
+        return ResponseMessage.createBySuccess(map);
+    }
 }
