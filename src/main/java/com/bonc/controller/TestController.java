@@ -226,7 +226,7 @@ public class TestController {
         String requestUrl = WebLogAspect.getRequestUrl(request);
         session.setAttribute("message", "请求地址:"+requestUrl);
 
-        return ResponseMessage.createBySuccessMessage("第一次访问8088");
+        return ResponseMessage.createBySuccessMessage("第一次访问"+requestUrl);
     }
 
     @RequestMapping(value = "/testRedisSession.do", produces = "application/json;charset=UTF-8")

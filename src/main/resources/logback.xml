@@ -16,8 +16,8 @@
 			stdout将日志信息输出到控制上，为方便开发测试使用
 	-->
     <contextName>SpringBootDemo</contextName>
-    <property name="LOG_PATH" value="D:\\WebLogs\\SpringBootDemoLogbacks"/>
-    <!--<property name="LOG_PATH" value="logs"></property>-->
+    <!--<property name="LOG_PATH" value="D:\\WebLogs\\SpringBootDemoLogbacks"/>-->
+    <property name="LOG_PATH" value="logs"></property>
     <!-- 日志记录器，FILE_ERROR -->
     <appender name="FILE_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <!-- 正在记录的日志文件的路径及文件名 -->
@@ -141,13 +141,13 @@
 
     <!-- 生产环境下，将此级别配置为适合的级别，以免日志文件太多或影响程序性能 -->
     <root level="INFO">
-        <!--<appender-ref ref="FILE_ERROR" />-->
-        <!--<appender-ref ref="FILE_WARN" />-->
-        <!--<appender-ref ref="FILE_INFO" />-->
-        <!--<appender-ref ref="FILE" />-->
+        <appender-ref ref="FILE_ERROR" />
+        <appender-ref ref="FILE_WARN" />
+        <appender-ref ref="FILE_INFO" />
+        <appender-ref ref="FILE" />
 
         <!-- 生产环境将请stdout去掉 -->
-        <appender-ref ref="STDOUT" />
+        <!--<appender-ref ref="STDOUT" />-->
     </root>
 
 </configuration>
