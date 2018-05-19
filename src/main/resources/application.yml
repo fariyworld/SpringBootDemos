@@ -166,7 +166,11 @@ spring:
 #    启用模板缓存
     cache: false
 
-
+#  redis实现spring session共享
+  session:
+    store-type: redis
+    redis:
+      namespace: springboot-session-redis
 
 #mybatis配置
 mybatis:
