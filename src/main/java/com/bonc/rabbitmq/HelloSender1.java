@@ -29,4 +29,17 @@ public class HelloSender1 {
         System.out.println("Sender1 object: " + user.toString());
         this.rabbitTemplate.convertAndSend("spring-boot-queue", user);
     }
+    //发送send1会匹配到topic.#和topic.message 两个Receiver都可以收到消息，
+    //发送send2只有topic.#可以匹配所有只有Receiver2监听到消息
+    public void send1() {
+        String context = "hi, i am message 1";
+        System.out.println("Sender1 : " + context);
+        this.rabbitTemplate.convertAndSend("exchange", "topic.message", context);
+    }
+
+    public void send2() {
+        String context = "hi, i am messages 2";
+        System.out.println("Sender1 : " + context);
+        this.rabbitTemplate.convertAndSend("exchange", "topic.messages", context);
+    }
 }

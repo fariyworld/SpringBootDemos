@@ -9,6 +9,8 @@ import com.bonc.entity.Users;
 import com.bonc.enums.ResponseCode;
 import com.bonc.rabbitmq.HelloSender1;
 import com.bonc.rabbitmq.HelloSender2;
+import com.bonc.rabbitmq.fanout.FanoutSender;
+import com.bonc.rabbitmq.topic.TopicSender;
 import com.bonc.service.IUserService;
 import com.bonc.service.UsersService;
 import com.bonc.util.CookieUtil;
@@ -58,6 +60,12 @@ public class TestController {
 
     @Autowired
     private HelloSender2 helloSender2;
+
+    @Autowired
+    private TopicSender topicSender;
+
+    @Autowired
+    private FanoutSender fanoutSender;
 
     /**
      *
@@ -289,5 +297,26 @@ public class TestController {
         helloSender1.send(user);
 
         return ResponseMessage.createBySuccess(user);
+    }
+
+    @RequestMapping(value = "/testRabbitMQTopic.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage testRabbitMQTopic(){
+
+        topicSender.send();
+        topicSender.send1();
+        topicSender.send2();
+
+        return ResponseMessage.createBySuccess();
+    }
+
+
+    @RequestMapping(value = "/testRabbitMQFanout.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage testRabbitMQFanout(){
+
+        fanoutSender.send();
+
+        return ResponseMessage.createBySuccess();
     }
 }

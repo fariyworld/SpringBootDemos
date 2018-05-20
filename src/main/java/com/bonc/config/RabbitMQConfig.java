@@ -17,4 +17,5 @@ public class RabbitMQConfig {
         //true 队列持久
         return new Queue("spring-boot-queue", false);
     }
+
 }
