@@ -48,7 +48,7 @@ public class CookieUtil {
      * @param maxAge    cookie生命周期  以秒为单位
      * @return: void
      */
-    public static void set(HttpServletResponse response, String cookieName, String cookieValue, int maxAge){
+    public static void addCookie(HttpServletResponse response, String cookieName, String cookieValue, int maxAge){
 
         CookieGenerator c = new CookieGenerator();
         c.setCookieName(cookieName);
@@ -57,6 +57,23 @@ public class CookieUtil {
         c.addCookie(response, UrlHelper.encode(cookieValue));
         //5afe3ea8742a481c5c4ba2b8_离线购物车ID
 //        c.addCookie(response, cookieValue);
+    }
+
+
+    /**
+     * description: 移除cookie
+     * <br /><br />
+     * create by mace on 2018/5/19 19:26.
+     * @param response
+     * @param cookieName
+     * @return: void
+     */
+    public static void removeCookie(HttpServletResponse response, String cookieName){
+
+        CookieGenerator c = new CookieGenerator();
+        c.setCookieName(cookieName);
+
+        c.removeCookie(response);
     }
 
     /**

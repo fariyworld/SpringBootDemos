@@ -158,6 +158,11 @@
             <artifactId>google-collections</artifactId>
             <version>${google-collections-version}</version>
         </dependency>
+        <!-- springboot集成RabbitMQ -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
 
     </dependencies>
 

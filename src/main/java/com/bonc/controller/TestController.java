@@ -7,19 +7,19 @@ import com.bonc.config.FTPProperties;
 import com.bonc.domain.User;
 import com.bonc.entity.Users;
 import com.bonc.enums.ResponseCode;
+import com.bonc.rabbitmq.HelloSender1;
+import com.bonc.rabbitmq.HelloSender2;
 import com.bonc.service.IUserService;
 import com.bonc.service.UsersService;
 import com.bonc.util.CookieUtil;
 import com.bonc.util.FTPUtil;
 import com.bonc.util.MongoOpsUtil;
 import com.github.pagehelper.PageInfo;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.solr.core.SolrTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
@@ -54,6 +53,11 @@ public class TestController {
     @Autowired
     private IUserService iUserService;
 
+    @Autowired
+    private HelloSender1 helloSender1;
+
+    @Autowired
+    private HelloSender2 helloSender2;
 
     /**
      *
@@ -197,7 +201,7 @@ public class TestController {
 
         String sessionId = session.getId();
         //D38353071D007BFB0FB6CA0282BAA2A3
-        CookieUtil.set(response,
+        CookieUtil.addCookie(response,
                       Constant.Cookie.OFF_LINE_SHOPPING_CART_ID,
                       MongoOpsUtil.ObjectId2Str()+"_离线购物车ID",
                        Constant.Cookie.ONE_MONTH);
@@ -240,5 +244,50 @@ public class TestController {
         map.put("message", message);
 
         return ResponseMessage.createBySuccess(map);
+    }
+
+
+    @RequestMapping(value = "/testRabbitMQ.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<String> testRabbitMQ(){
+
+        helloSender1.send(0);
+
+        return ResponseMessage.createBySuccess();
+    }
+
+    @RequestMapping(value = "/testRabbitMQOneToMany.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<String> testRabbitMQOneToMany(){
+
+        for (int i=0;i<10;i++){
+            helloSender1.send(i);
+        }
+
+        return ResponseMessage.createBySuccess();
+    }
+
+
+    @RequestMapping(value = "/testRabbitMQManyToMany.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<String> testRabbitMQManyToMany(){
+
+        for (int i=0;i<10;i++){
+            helloSender1.send(i);
+            helloSender2.send(i);
+        }
+
+        return ResponseMessage.createBySuccess();
+    }
+
+    @RequestMapping(value = "/testRabbitMQObject.do", produces = "application/json;charset=UTF-8")
+    @ResponseBody
+    public ResponseMessage<User> testRabbitMQObject(){
+
+        User user = iUserService.selectByPrimaryKey(1);
+
+        helloSender1.send(user);
+
+        return ResponseMessage.createBySuccess(user);
     }
 }

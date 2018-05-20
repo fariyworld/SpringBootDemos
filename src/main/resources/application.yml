@@ -172,6 +172,18 @@ spring:
     redis:
       namespace: springboot-session-redis
 
+#  RabbitMQ消息队列
+  rabbitmq:
+    host: 192.168.88.129
+    port: 5672
+    username: mace
+    password: ENC(356IXRJuIUZGToRMUG375+pm5hnmyqM4)
+    connection-timeout: 60000
+    virtual-host: /rabbitmq_host1
+#    消息的回调
+    publisher-confirms: true
+
+
 #mybatis配置
 mybatis:
   configuration:
